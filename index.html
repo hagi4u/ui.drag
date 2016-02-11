@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Drag Events</title>
+  <script src="js/mousedrag.js"></script>
+  <style>
+  #logger {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 20px;
+    padding: 10px 0;
+    text-align: center;
+    background-color: #e0e0e0;
+    z-index: 10;
+  }
+  
+  #pane {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #efefef;
+    overflow: hidden;
+  }
+  
+  .window {
+    position: relative;
+    width: 5000px;
+    height: 3750px;
+
+    background-image: url('http://www.planwallpaper.com/static/images/colorful-triangles-background_yB0qTG6.jpg');
+    background-color: #c0c0c0;
+
+    cursor:move;
+  }
+  </style>
+</head>
+
+<body>
+  <div id="logger">Hello world!</div>
+  <div id="pane" class="drag">
+    <div id="child" class="window"></div>
+  </div>
+  <script>
+    var el = window.el || {};
+    var param = {
+      container: document.getElementById('pane'),
+      el: document.getElementById('child'),
+      debug: document.getElementById('logger')
+    }
+
+    new Drag(param, function(x, y) {
+      this._el.style.left = x + 'px';
+      this._el.style.top = y + 'px';
+    });
+  </script>
+</body>
+
+</html>
